@@ -1,0 +1,62 @@
+[package]
+name = "tulangpunggung"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Web Framework
+rwf = "0.2.1"
+tokio = { version = "1.49", features = ["full"] }
+
+# Database 
+# ADDED: "bigdecimal" feature here to fix your error
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "json", "bigdecimal", "rust_decimal"] }
+bigdecimal = "0.4.10"
+
+# Redis
+redis = { version = "1.0.2", features = ["tokio-comp", "connection-manager"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# HTTP Client
+reqwest = { version = "0.13", features = ["json"] }
+
+# Authentication & Security
+jsonwebtoken = "10.2"
+urlencoding = "2.1"
+
+# Date/Time
+chrono = { version = "0.4.43", features = ["serde"] }
+
+# UUID
+uuid = { version = "1.20", features = ["v4", "serde"] }
+
+# Error Handling
+anyhow = "1.0"
+thiserror = "2.0" # thiserror recently moved to 2.0
+
+# Environment Variables
+dotenvy = "0.15" # dotenv is deprecated; dotenvy is the maintained drop-in replacement
+
+# Logging
+env_logger = "0.11"
+log = "0.4"
+
+# Async Traits
+async-trait = "0.1"
+axum = { version = "0.8.8", features = ["ws"] }
+futures-util = "0.3.31"
+http = "1.4.0"
+tower-http = { version = "0.6.8", features = ["cors", "trace"] }
+tracing = "0.1.44"
+tracing-subscriber = "0.3.22"
+tokio-cron-scheduler = "0.15.1"
+rust_decimal = "1.40.0"
+once_cell = "1.21.3"
+base64 = "0.22.1"
+rwf-admin = "0.1.12"
+
+[dev-dependencies]
+tokio-test = "0.4"
