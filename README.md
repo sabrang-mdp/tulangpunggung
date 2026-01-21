@@ -44,7 +44,8 @@ It currently includes:
 * HTTP handlers (auth, dashboard, reports, tickets, etc.)
 * WebSocket handling
 * Background jobs
-* Database migrations
+* Database migrations via `sqlx migrate`
+* Authentication and identity management using **Logto**
 * Basic middleware (auth, RBAC, CORS)
 * Early experiments with LLM-assisted processing
 
@@ -54,7 +55,7 @@ It is **not an endorsement of RWF as a framework choice**.
 
 ---
 
-## ⚠️ Status
+## Status
 
 * Proof of Concept
 * Not security audited
@@ -82,18 +83,45 @@ src/
 
 ---
 
-## 🧪 Running Locally
+## Running Locally
 
 Requirements:
 
 * Rust (stable)
 * PostgreSQL
 * Docker (optional)
+* Logto (for authentication)
+
+### 1. Authentication (Logto)
+
+This project uses **Logto** as the authentication and identity backend.
+
+You must install and run Logto separately. Follow the official installation guide:
+
+[https://docs.logto.io/quick-starts/m2m](https://docs.logto.io/quick-starts/m2m)
+
+Once Logto is running, configure the required environment variables in your `.env` file (issuer URL, client ID, client secret, etc.).
+
+---
+
+### 2. Database Migration
+
+Database schema is managed using **sqlx**.
+
+Run migrations with:
+
+```
+sqlx migrate run
+```
+
+Migration files live in `migrations/`.
+
+---
+
+### 3. Run the Server
 
 ```
 cp .env.example .env
-cp rwf.toml.example rwf.toml
-sqlx migrate run
 cargo run
 ```
 
