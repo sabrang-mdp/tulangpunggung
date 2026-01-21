@@ -92,8 +92,9 @@ Requirements:
 
 ```
 cp .env.example .env
-cargo run
+cp rwf.toml.example rwf.toml
 sqlx migrate run
+cargo run
 ```
 
 ---
